@@ -28,6 +28,20 @@ namespace MyListEntitys
             Svnr = svnr;
         }
 
+        public int CompareTo(object obj)
+        {
+            Person other = obj as Person;
+
+            if (other == null)
+                throw new ArgumentNullException(nameof(other));
+
+            return this.FullName.CompareTo(other.FullName);
+        }
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} | {Age} | {PostCode} | {Svnr}";
+        }
+
         public static IComparer SortOnAgeDescending()
         {
             return (IComparer)new SortPersonAgeDescending();
@@ -43,16 +57,6 @@ namespace MyListEntitys
         public static IComparer SortOnSvnrDescending()
         {
             return (IComparer)new SortPersonSvnrDescending();
-        }
-
-        public int CompareTo(object obj)
-        {
-            Person other = obj as Person;
-
-            if (other == null)
-                throw new ArgumentNullException(nameof(other));
-
-            return this.FullName.CompareTo(other.FullName);
         }
     }
 }
