@@ -30,16 +30,29 @@ namespace MyListEntitys
 
         public static IComparer SortOnAgeDescending()
         {
-            throw new NotImplementedException();
+            return (IComparer)new SortPersonAgeDescending();
+        }
+        public static IComparer SortOnAgeAscending()
+        {
+            return (IComparer)new SortPersonAgeAscending();
         }
         public static IComparer SortOnPostCodeDescending()
         {
-            throw new NotImplementedException();
+            return (IComparer)new SortPersonPostCodeDescending();
+        }
+        public static IComparer SortOnSvnrDescending()
+        {
+            return (IComparer)new SortPersonSvnrDescending();
         }
 
-        public int CompareTo(object other)
+        public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            Person other = obj as Person;
+
+            if (other == null)
+                throw new ArgumentNullException(nameof(other));
+
+            return this.FullName.CompareTo(other.FullName);
         }
     }
 }
