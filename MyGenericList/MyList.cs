@@ -7,11 +7,58 @@ namespace MyGenericList
 {
     class MyList<T> : IList<T>
     {
-        public int Count => throw new NotImplementedException();
-        public bool IsReadOnly => throw new NotImplementedException();
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        
-        
+        private Node<T> _head;
+
+        public int Count
+        {
+            get
+            {
+                Node<T> run = _head;
+                int count = 0;
+
+                while (run != null)
+                {
+                    count++;
+                    run = run.Next;
+                }
+
+                return count;
+            }
+        }
+        public bool IsReadOnly { get => false; }
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+
+                Node<T> run = _head;
+
+                for (int i = 0; i < index && run != null; i++)
+                {
+                    run = run.Next;
+                }
+
+                return run.Data;
+            }
+
+            set
+            {
+                Insert(index, value);
+
+                if (index == 0)
+                {
+                    RemoveAt(1);
+                }
+                else
+                {
+                    RemoveAt(index + 1);
+                }
+            }
+        }
+
+
         public void Add(T item)
         {
             throw new NotImplementedException();
