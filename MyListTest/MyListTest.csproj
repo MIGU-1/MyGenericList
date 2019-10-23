@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyGenericList\MyGenericList.csproj" />
+    <ProjectReference Include="..\MyListEntitys\MyListEntitys.csproj" />
   </ItemGroup>
 
 </Project>

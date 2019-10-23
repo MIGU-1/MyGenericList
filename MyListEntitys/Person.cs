@@ -35,7 +35,7 @@ namespace MyListEntitys
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
 
-            return this.FullName.CompareTo(other.FullName);
+            return this.FullName.CompareTo(other.FullName) * -1;
         }
         public override string ToString()
         {
